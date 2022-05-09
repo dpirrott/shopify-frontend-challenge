@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FormLabel, Textarea, Button, FormControl } from "@chakra-ui/react";
 
-export default function CustomForm() {
+export default function CustomForm({ handleSubmit }) {
   const [value, setValue] = useState("");
 
   const handleInputChange = (e) => {
@@ -11,7 +11,12 @@ export default function CustomForm() {
 
   return (
     <>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(value, setValue);
+        }}
+      >
         <FormControl>
           <FormLabel htmlFor="prompt">Enter prompt:</FormLabel>
           <Textarea
