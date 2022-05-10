@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { FormLabel, Textarea, Button, FormControl } from "@chakra-ui/react";
+import {
+  FormLabel,
+  Textarea,
+  Button,
+  FormControl,
+  Flex,
+} from "@chakra-ui/react";
 
 export default function CustomForm({ handleSubmit }) {
   const [value, setValue] = useState("");
@@ -22,13 +28,15 @@ export default function CustomForm({ handleSubmit }) {
           <Textarea
             id="prompt"
             value={value}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
             placeholder="Here is a sample placeholder"
             size="sm"
           />
-          <Button type="submit" colorScheme="telegram" variant="outline">
-            Submit
-          </Button>
+          <Flex justify="flex-end" mt="0.5rem">
+            <Button type="submit" colorScheme="telegram" variant="outline">
+              Submit
+            </Button>
+          </Flex>
         </FormControl>
       </form>
     </>

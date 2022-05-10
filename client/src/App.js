@@ -1,20 +1,29 @@
 import "./App.css";
 import Form from "./Form";
 import { ResponseList } from "./ResponseList";
-import { Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 import axios from "axios";
+import { useState } from "react";
 
 function App() {
+  const [response, setResponse] = useState(null);
+
   const submitForm = (userInput, setInput) => {
+    const processInput = userInput.trim();
+
+    if (processInput === "") {
+      setInput("");
+      return;
+    }
     const API_KEY = process.env.REACT_APP_API_KEY;
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${API_KEY}`,
     };
     const data = {
-      prompt: userInput,
+      prompt: processInput,
       temperature: 0.7,
-      max_tokens: 50,
+      max_tokens: 100,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -28,19 +37,21 @@ function App() {
         }
       )
       .then((response) => {
-        console.log(response);
+        const aiResponse = response.data.choices[0].text;
+        console.log(aiResponse);
+        setResponse({ prompt: userInput, response: aiResponse });
         setInput("");
       });
   };
 
   return (
-    <div className="App">
-      <Heading as="h1" size="2xl">
+    <Container width="80%" maxWidth="800px">
+      <Heading mb="1rem" as="h1" size="2xl">
         Fun with AI
       </Heading>
       <Form handleSubmit={submitForm} />
-      <ResponseList />
-    </div>
+      <ResponseList response={response} setResponse={setResponse} />
+    </Container>
   );
 }
 
