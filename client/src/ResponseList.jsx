@@ -1,4 +1,4 @@
-import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Container, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Response } from "./Response";
 
@@ -11,10 +11,16 @@ export const ResponseList = ({ response, setResponse }) => {
         key={index}
         mt="1rem"
         borderRadius="1em"
-        bg="mediumaquamarine"
+        bg="#43f10073"
         padding="1rem"
+        boxShadow="lg"
       >
-        <Response prompt={prompt} response={response} />
+        <Response
+          prompt={prompt}
+          response={response}
+          latest={index === 0}
+          setResponse={setResponse}
+        />
       </ListItem>
     ));
   };
@@ -33,14 +39,16 @@ export const ResponseList = ({ response, setResponse }) => {
   }, [responses]);
 
   return (
-    <div>
-      <Heading as="h3" size="lg">
-        Responses
-      </Heading>
+    <Container maxWidth="100%" padding="0" boxShadow="lg" borderRadius="1em">
+      <div className="responseSection">
+        <Heading as="h3" size="lg">
+          Responses
+        </Heading>
 
-      <UnorderedList ml="0" listStyleType="none">
-        {listItems}
-      </UnorderedList>
-    </div>
+        <UnorderedList ml="0" listStyleType="none">
+          {listItems}
+        </UnorderedList>
+      </div>
+    </Container>
   );
 };

@@ -21,3 +21,11 @@ code {
 .response {
   font-family: "ModernTypewriter";
 }
+
+.responseSection {
+  background-color: #c5c5c6;
+  min-height: 200px;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 1em;
+}
