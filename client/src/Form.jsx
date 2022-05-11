@@ -7,7 +7,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 
-export default function CustomForm({ handleSubmit }) {
+export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
   const [value, setValue] = useState("");
 
   const handleInputChange = (e) => {
@@ -20,7 +20,13 @@ export default function CustomForm({ handleSubmit }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(value, setValue);
+          const processInput = value.trim();
+          if (processInput === "") {
+            setValue("");
+            return;
+          }
+          setIsLoading(true);
+          handleSubmit(processInput, setValue);
         }}
       >
         <FormControl>
@@ -33,7 +39,14 @@ export default function CustomForm({ handleSubmit }) {
             size="sm"
           />
           <Flex justify="flex-end" mt="0.5rem">
-            <Button type="submit" colorScheme="telegram" variant="outline">
+            <Button
+              isLoading={isLoading}
+              loadingText="Processing"
+              spinnerPlacement="end"
+              type="submit"
+              colorScheme="telegram"
+              variant="outline"
+            >
               Submit
             </Button>
           </Flex>

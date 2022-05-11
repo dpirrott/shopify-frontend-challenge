@@ -7,23 +7,18 @@ import { useState } from "react";
 
 function App() {
   const [response, setResponse] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitForm = (userInput, setInput) => {
-    const processInput = userInput.trim();
-
-    if (processInput === "") {
-      setInput("");
-      return;
-    }
     const API_KEY = process.env.REACT_APP_API_KEY;
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${API_KEY}`,
     };
     const data = {
-      prompt: processInput,
+      prompt: userInput,
       temperature: 0.7,
-      max_tokens: 25,
+      max_tokens: 100,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -39,6 +34,7 @@ function App() {
       .then((response) => {
         const aiResponse = response.data.choices[0].text;
         console.log(aiResponse);
+        setIsLoading(false);
         setResponse({ prompt: userInput, response: aiResponse });
         setInput("");
       });
@@ -49,7 +45,11 @@ function App() {
       <Heading mb="1rem" as="h1" size="2xl">
         Fun with AI
       </Heading>
-      <Form handleSubmit={submitForm} />
+      <Form
+        handleSubmit={submitForm}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
       <ResponseList response={response} setResponse={setResponse} />
     </Container>
   );

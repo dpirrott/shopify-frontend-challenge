@@ -85,7 +85,9 @@ export const Response = ({
           <Text
             width="88%"
             fontSize="1.25rem"
-            height="30px"
+            minHeight="30px"
+            height="fit-content"
+            className="response"
             // className={`${latest ? slideClass : ""}`}
           >
             {latest ? typeWriter : response}
