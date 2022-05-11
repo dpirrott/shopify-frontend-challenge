@@ -29,3 +29,67 @@ code {
   margin-top: 1em;
   border-radius: 1em;
 }
+
+.newestHide {
+  opacity: 0;
+}
+
+.newestShow {
+  opacity: 0;
+  /* line-height: 0; */
+  transform: scaleY(0);
+  animation-name: slide;
+  /* animation-delay: 50ms; */
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+  from {
+    /* line-height: 1px; */
+    opacity: 0;
+    transform: scaleY(0);
+
+    /* line-height: 0; */
+  }
+  to {
+    /* line-height: 1rem; */
+
+    transform: scaleY(1);
+    opacity: 1;
+    /* font-size: 100%; */
+  }
+}
+
+.newestShowouterLi {
+  opacity: 0;
+  /* line-height: 0; */
+  transform: scaleY(0);
+  animation-name: slide2;
+  /* animation-delay: 50ms; */
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  padding: 0 1rem;
+  margin-top: 0;
+}
+@keyframes slide2 {
+  from {
+    /* line-height: 1px; */
+    opacity: 0;
+    transform: scaleY(0);
+    padding: 0 1rem;
+    margin-top: 0;
+
+    /* line-height: 0; */
+  }
+  to {
+    /* line-height: 1rem; */
+
+    transform: scaleY(1);
+    opacity: 1;
+    padding: 1rem 1rem;
+    margin-top: 1rem;
+    /* font-size: 100%; */
+  }
+}

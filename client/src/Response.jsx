@@ -1,12 +1,20 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Collapse } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-export const Response = ({ prompt, response, setResponse, latest }) => {
+export const Response = ({
+  prompt,
+  response,
+  setResponse,
+  latest,
+  slideClass,
+  setSlideClass,
+  responses,
+}) => {
   const [typeWriter, setTypeWriter] = useState("");
 
   const printSlow = () => {
     const temp = response;
-    setResponse(null);
+
     for (let i = 1; i < response.length; i++) {
       setTimeout(() => {
         setTypeWriter(temp.slice(0, i));
@@ -15,32 +23,71 @@ export const Response = ({ prompt, response, setResponse, latest }) => {
   };
 
   useEffect(() => {
+    setTypeWriter("");
     if (latest) {
-      printSlow();
+      // setSlideClass("newestShow");
+      // setTimeout(() => {
+      //   setSlideClass("");
+      // }, 1050);
+      setTimeout(() => {
+        printSlow();
+      }, 1200);
+    } else {
+      setSlideClass("");
     }
-  }, [response]);
+  }, [responses]);
 
   return (
-    <div>
-      <Flex direction="column" gap={3}>
-        <Flex direction="row" justify="space-between" gap="2em">
-          <Text fontWeight="700" width="11%" minWidth="80px">
+    <div className={`${latest ? slideClass : ""}`}>
+      <Flex
+        direction="column"
+        gap={3}
+        className={`${latest ? slideClass : ""}`}
+      >
+        <Flex
+          // className={`${latest ? slideClass : ""}`}
+          direction="row"
+          overflow="hidden"
+          justify="space-between"
+          gap="2em"
+        >
+          <Text
+            fontWeight="700"
+            width="11%"
+            // className={`${latest ? slideClass : ""}`}
+            minWidth="80px"
+          >
             Prompt:
           </Text>
           <Text
             width="88%"
-            fontStyle="italic"
             fontSize={20}
-            fontFamily="roboto"
+            // className={`${latest ? slideClass : ""}`}
           >
             {prompt}
           </Text>
         </Flex>
-        <Flex direction="row" justify="space-between" gap="2em">
-          <Text fontWeight="700" width="11%" minWidth="80px">
+        <Flex
+          // className={`${latest ? slideClass : ""}`}
+          direction="row"
+          overflow="hidden"
+          justify="space-between"
+          gap="2em"
+        >
+          <Text
+            fontWeight="700"
+            width="11%"
+            minWidth="80px"
+            // className={`${latest ? slideClass : ""}`}
+          >
             Response:
           </Text>
-          <Text className="response" width="88%" fontSize="1.25rem">
+          <Text
+            width="88%"
+            fontSize="1.25rem"
+            height="30px"
+            // className={`${latest ? slideClass : ""}`}
+          >
             {latest ? typeWriter : response}
           </Text>
         </Flex>

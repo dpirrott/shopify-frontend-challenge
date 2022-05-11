@@ -5,28 +5,39 @@ import { Response } from "./Response";
 export const ResponseList = ({ response, setResponse }) => {
   const [responses, setResponses] = useState([]);
   const [listItems, setListItems] = useState([]);
+  const [slideClass, setSlideClass] = useState("");
+  // const [animation, setAnimation] = useState(0);
+  // const { isOpen, onToggle } = useDisclosure();
   const generateListItems = () => {
-    return responses.map(({ prompt, response }, index) => (
-      <ListItem
-        key={index}
-        mt="1rem"
-        borderRadius="1em"
-        bg="#43f10073"
-        padding="1rem"
-        boxShadow="lg"
-      >
-        <Response
-          prompt={prompt}
-          response={response}
-          latest={index === 0}
-          setResponse={setResponse}
-        />
-      </ListItem>
-    ));
+    return responses.map(({ prompt, response }, index) => {
+      return (
+        <ListItem
+          key={index === 0 ? response.length * 10 : index}
+          mt="1rem"
+          borderRadius="1em"
+          bg="#43f10073"
+          padding="1rem"
+          boxShadow="lg"
+          className={index === 0 ? slideClass + "outerLi" : ""}
+          onAnimationEnd={setSlideClass("")}
+        >
+          <Response
+            prompt={prompt}
+            response={response}
+            responses={responses}
+            latest={index === 0}
+            setResponse={setResponse}
+            slideClass={slideClass}
+            setSlideClass={setSlideClass}
+          />
+        </ListItem>
+      );
+    });
   };
 
   useEffect(() => {
     if (response) {
+      setSlideClass("newestShow");
       setResponses((prev) => [response, ...prev]);
       setResponse(null);
     }
@@ -35,6 +46,7 @@ export const ResponseList = ({ response, setResponse }) => {
   useEffect(() => {
     if (responses) {
       setListItems(generateListItems());
+      setSlideClass("");
     }
   }, [responses]);
 
