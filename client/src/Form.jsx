@@ -83,7 +83,7 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
         <Button
           onClick={() => setVoiceCommand("cancel")}
           mt="1rem"
-          mb="1rem"
+          // mb="1rem"
           backgroundColor="#da4242"
           color="#000000"
           _hover={{
@@ -98,7 +98,7 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
         <Button
           onClick={() => setVoiceCommand("start")}
           mt="1rem"
-          mb="1rem"
+          // mb="1rem"
           backgroundColor="#0d262f"
           color="white"
           _hover={{
@@ -119,7 +119,7 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
       </Flex>
       <Heading
         mt="0.5rem"
-        mb="2rem"
+        mb="1rem"
         as="h3"
         size="lg"
         backgroundColor="whiteAlpha.700"
@@ -149,6 +149,8 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
             backgroundColor="whiteAlpha.700"
             width="fit-content"
             borderRadius="5px 5px 0 0"
+            border="1px solid white"
+            borderBottom="0"
             mb="0"
             padding="3px"
           >

@@ -148,35 +148,45 @@ code {
 
 .hideVoiceOrb {
   transform: scaleY(0);
-  display: none;
+  /* display: none; */
+  margin: 0.5rem 0;
+  height: 0;
 }
 
 .spawnVoiceOrb {
   animation-name: spawn;
   animation-duration: 300ms;
   animation-fill-mode: forwards;
+  margin: 0.5rem 0;
+  height: 0;
 }
 
 @keyframes spawn {
   from {
     transform: scaleY(0);
+    height: 0;
   }
   to {
     transform: scaleY(1);
+    height: 25px;
   }
 }
 .despawnVoiceOrb {
   animation-name: despawn;
   animation-duration: 300ms;
   animation-fill-mode: forwards;
+  margin: 0.5rem 0;
+  height: 25px;
 }
 
 @keyframes despawn {
   from {
     transform: scaleY(1);
+    height: 25px;
   }
   to {
     transform: scaleY(0);
+    height: 0;
   }
 }
 
