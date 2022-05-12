@@ -1,7 +1,7 @@
 import "./App.css";
 import Form from "./Form";
 import { ResponseList } from "./ResponseList";
-import { Container, Heading } from "@chakra-ui/react";
+import { Container, Flex, Heading, Link } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import vector from "./images/6106991.jpg";
@@ -42,27 +42,39 @@ function App() {
   };
 
   return (
-    <Container
-      width="90%"
-      maxWidth="1500px"
-      backgroundImage={vector}
-      backgroundSize="cover"
-    >
+    <Container maxWidth="100%" backgroundImage={vector} backgroundSize="cover">
       <Container
         width="80%"
         maxWidth="800px"
         // backgroundColor="green.400"
         minHeight="100vh"
       >
-        <Heading mb="1rem" as="h1" size="2xl" color="#d7d7d7">
-          Fun with AI
-        </Heading>
-        <Form
-          handleSubmit={submitForm}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-        />
-        <ResponseList response={response} setResponse={setResponse} />
+        <Flex
+          direction="column"
+          justify="space-between"
+          minHeight="100vh"
+          gap="30px"
+        >
+          <div>
+            <Heading mb="1rem" as="h1" size="2xl" color="#d7d7d7">
+              Fun with AI
+            </Heading>
+            <Form
+              handleSubmit={submitForm}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
+            <ResponseList response={response} setResponse={setResponse} />
+          </div>
+          <Link
+            textAlign="center"
+            backgroundColor="white"
+            borderRadius="10px 10px 0 0"
+            href="https://www.freepik.com/vectors/future-background"
+          >
+            Future background vector created by freepik - www.freepik.com
+          </Link>
+        </Flex>
       </Container>
     </Container>
   );

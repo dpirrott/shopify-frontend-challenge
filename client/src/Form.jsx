@@ -148,7 +148,8 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
             fontSize="1.25rem"
             backgroundColor="whiteAlpha.700"
             width="fit-content"
-            borderRadius="5px"
+            borderRadius="5px 5px 0 0"
+            mb="0"
             padding="3px"
           >
             Enter prompt manually:
@@ -162,6 +163,7 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
             color="black"
             fontWeight="600"
             fontSize="1.1rem"
+            borderRadius="0 5px 5px 5px"
             background="whiteAlpha.700"
             _hover={{
               backgroundColor: "#c3cca7",
