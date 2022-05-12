@@ -68,7 +68,7 @@ function App() {
           </div>
           <Link
             textAlign="center"
-            backgroundColor="white"
+            backgroundColor="rgb(255 255 255 / 36%)"
             borderRadius="10px 10px 0 0"
             href="https://www.freepik.com/vectors/future-background"
           >
