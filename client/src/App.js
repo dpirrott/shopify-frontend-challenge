@@ -44,7 +44,7 @@ function App() {
   return (
     <Container maxWidth="100%" backgroundImage={vector} backgroundSize="cover">
       <Container
-        width="80%"
+        width="100%"
         maxWidth="800px"
         // backgroundColor="green.400"
         minHeight="100vh"
