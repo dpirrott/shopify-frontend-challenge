@@ -15,7 +15,7 @@ export const ResponseList = ({ response, setResponse }) => {
           key={index === 0 ? response.length * 10 : index}
           mt="1rem"
           borderRadius="1em"
-          bg="#43f10073"
+          bg="#43f100de"
           padding="1rem"
           boxShadow="lg"
           className={index === 0 ? slideClass + "outerLi" : ""}

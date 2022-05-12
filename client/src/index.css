@@ -18,12 +18,18 @@ code {
     monospace;
 }
 
+.form {
+  background-color: #949494bf;
+  padding: 1em;
+  border-radius: 1em;
+}
+
 .response {
   font-family: "ModernTypewriter";
 }
 
 .responseSection {
-  background-color: #c5c5c6;
+  background-color: #949494bf;
   min-height: 200px;
   padding: 1em;
   margin-top: 1em;
@@ -92,4 +98,88 @@ code {
     margin-top: 1rem;
     /* font-size: 100%; */
   }
+}
+
+#micIndicator {
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  width: 25px;
+  height: 25px;
+  border-left: 5px solid blue;
+  border-right: 5px solid blue;
+}
+
+.detectInput {
+  animation-name: pulse;
+  animation-duration: 100ms;
+  animation-timing-function: ease-out;
+}
+
+@keyframes pulse {
+  0% {
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+  }
+}
+
+.listening {
+  animation-name: spin-pulse;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-timeline: reverse;
+}
+
+@keyframes spin-pulse {
+  0% {
+    /* transform: rotateY(); */
+    transform: rotateZ(0deg) scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: rotateZ(180deg) scaleY(1.2) scaleX(0.8);
+  }
+  100% {
+    transform: rotateZ(360deg) scaleY(1) scaleX(1);
+  }
+}
+
+.hideVoiceOrb {
+  transform: scaleY(0);
+}
+
+.spawnVoiceOrb {
+  animation-name: spawn;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spawn {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.despawnVoiceOrb {
+  animation-name: despawn;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes despawn {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+textarea::placeholder {
+  color: black;
+  opacity: 0.8;
 }
