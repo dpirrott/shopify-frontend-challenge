@@ -45,11 +45,14 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
       setShowTranscript("spawnVoiceOrb");
       setDetect("listening");
       SpeechRecognition.startListening();
-      // setTimeout(() => {
-      //   setVoiceCommand("end");
-      //   SpeechRecognition.stopListening();
-      // }, 5000);
     }
+
+    if (voiceCommand === "cancel") {
+      setDetect("");
+      SpeechRecognition.stopListening();
+      setShowTranscript("despawnVoiceOrb");
+    }
+
     if (voiceCommand === "end") {
       setDetect("");
       const input = storedTranscript;
@@ -76,19 +79,38 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
 
   return (
     <div className="form">
-      <Button
-        onClick={() => setVoiceCommand("start")}
-        mt="1rem"
-        mb="1rem"
-        backgroundColor="#0d262f"
-        color="white"
-        _hover={{
-          backgroundColor: "lightblue",
-          color: "black",
-        }}
-      >
-        Try voice command
-      </Button>
+      {voiceCommand === "start" ? (
+        <Button
+          onClick={() => setVoiceCommand("cancel")}
+          mt="1rem"
+          mb="1rem"
+          backgroundColor="#da4242"
+          color="#000000"
+          _hover={{
+            backgroundColor: "#920000",
+            color: "white",
+            boxShadow: "0 0 3px 3px black",
+          }}
+        >
+          Cancel voice command
+        </Button>
+      ) : (
+        <Button
+          onClick={() => setVoiceCommand("start")}
+          mt="1rem"
+          mb="1rem"
+          backgroundColor="#0d262f"
+          color="white"
+          _hover={{
+            backgroundColor: "lightblue",
+            color: "black",
+            boxShadow: "0 0 3px 3px black",
+          }}
+        >
+          Try voice command
+        </Button>
+      )}
+
       <Flex justify="center" className={showTranscript}>
         <div id="micIndicator" className={detect}></div>
         <Text ml="20px" width="90%">
@@ -100,7 +122,7 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
         mb="2rem"
         as="h3"
         size="lg"
-        backgroundColor="whiteAlpha.500"
+        backgroundColor="whiteAlpha.700"
         width="fit-content"
         borderRadius="5px"
         padding="3px"
@@ -124,7 +146,7 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
             htmlFor="prompt"
             fontWeight="700"
             fontSize="1.25rem"
-            backgroundColor="whiteAlpha.500"
+            backgroundColor="whiteAlpha.700"
             width="fit-content"
             borderRadius="5px"
             padding="3px"
@@ -139,7 +161,8 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
             size="sm"
             color="black"
             fontWeight="600"
-            background="whiteAlpha.500"
+            fontSize="1.1rem"
+            background="whiteAlpha.700"
             _hover={{
               backgroundColor: "#c3cca7",
             }}

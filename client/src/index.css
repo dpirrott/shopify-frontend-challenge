@@ -148,6 +148,7 @@ code {
 
 .hideVoiceOrb {
   transform: scaleY(0);
+  display: none;
 }
 
 .spawnVoiceOrb {
