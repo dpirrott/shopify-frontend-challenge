@@ -1,13 +1,11 @@
-import { Container, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Container, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 import { Response } from "./Response";
 
 export const ResponseList = ({ response, setResponse }) => {
   const [responses, setResponses] = useState([]);
   const [listItems, setListItems] = useState([]);
   const [slideClass, setSlideClass] = useState("");
-  // const [animation, setAnimation] = useState(0);
-  // const { isOpen, onToggle } = useDisclosure();
   const generateListItems = () => {
     return responses.map(({ prompt, response }, index) => {
       return (

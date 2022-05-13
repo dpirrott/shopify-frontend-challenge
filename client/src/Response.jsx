@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 export const Response = ({
   prompt,
   response,
-  setResponse,
   latest,
   slideClass,
   setSlideClass,
@@ -25,10 +24,6 @@ export const Response = ({
   useEffect(() => {
     setTypeWriter("");
     if (latest) {
-      // setSlideClass("newestShow");
-      // setTimeout(() => {
-      //   setSlideClass("");
-      // }, 1050);
       setTimeout(() => {
         printSlow();
       }, 1200);
@@ -45,41 +40,25 @@ export const Response = ({
         className={`${latest ? slideClass : ""}`}
       >
         <Flex
-          // className={`${latest ? slideClass : ""}`}
           direction="row"
           overflow="hidden"
           justify="space-between"
           gap="2em"
         >
-          <Text
-            fontWeight="700"
-            width="11%"
-            // className={`${latest ? slideClass : ""}`}
-            minWidth="80px"
-          >
+          <Text fontWeight="700" width="11%" minWidth="80px">
             Prompt:
           </Text>
-          <Text
-            width="88%"
-            fontSize={20}
-            // className={`${latest ? slideClass : ""}`}
-          >
+          <Text width="88%" fontSize={20}>
             {prompt}
           </Text>
         </Flex>
         <Flex
-          // className={`${latest ? slideClass : ""}`}
           direction="row"
           overflow="hidden"
           justify="space-between"
           gap="2em"
         >
-          <Text
-            fontWeight="700"
-            width="11%"
-            minWidth="80px"
-            // className={`${latest ? slideClass : ""}`}
-          >
+          <Text fontWeight="700" width="11%" minWidth="80px">
             Response:
           </Text>
           <Text
@@ -88,7 +67,6 @@ export const Response = ({
             minHeight="30px"
             height="fit-content"
             className="response"
-            // className={`${latest ? slideClass : ""}`}
           >
             {latest ? typeWriter : response}
           </Text>

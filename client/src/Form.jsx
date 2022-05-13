@@ -14,8 +14,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
-  const [value, setValue] = useState("");
   const { transcript, resetTranscript } = useSpeechRecognition();
+  const [value, setValue] = useState("");
   const [storedTranscript, setStoredTranscript] = useState("");
   const [voiceCommand, setVoiceCommand] = useState(false);
   const [detect, setDetect] = useState("");
@@ -45,15 +45,11 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
       setShowTranscript("spawnVoiceOrb");
       setDetect("listening");
       SpeechRecognition.startListening();
-    }
-
-    if (voiceCommand === "cancel") {
+    } else if (voiceCommand === "cancel") {
       setDetect("");
       SpeechRecognition.stopListening();
       setShowTranscript("despawnVoiceOrb");
-    }
-
-    if (voiceCommand === "end") {
+    } else if (voiceCommand === "end") {
       setDetect("");
       const input = storedTranscript;
       console.log(input);
@@ -83,7 +79,6 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
         <Button
           onClick={() => setVoiceCommand("cancel")}
           mt="1rem"
-          // mb="1rem"
           backgroundColor="#da4242"
           color="#000000"
           _hover={{
@@ -98,7 +93,6 @@ export default function CustomForm({ handleSubmit, isLoading, setIsLoading }) {
         <Button
           onClick={() => setVoiceCommand("start")}
           mt="1rem"
-          // mb="1rem"
           backgroundColor="#0d262f"
           color="white"
           _hover={{

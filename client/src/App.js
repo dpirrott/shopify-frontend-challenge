@@ -43,12 +43,7 @@ function App() {
 
   return (
     <Container maxWidth="100%" backgroundImage={vector} backgroundSize="cover">
-      <Container
-        width="80%"
-        maxWidth="800px"
-        // backgroundColor="green.400"
-        minHeight="100vh"
-      >
+      <Container width="80%" maxWidth="800px" minHeight="100vh">
         <Flex
           direction="column"
           justify="space-between"
